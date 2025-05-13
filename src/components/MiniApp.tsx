@@ -14,8 +14,8 @@ import { Label } from "~/components/ui/label";
 import { useFrameSDK } from "~/hooks/useFrameSDK";
 import { baseUSDC } from "@daimo/contract";
 import { getAddress } from "viem";
-import BucketExplorer from "./BucketExplorer";
-import Confessions from "./Confessions";
+import BucketExplorer from "~/components/BucketExplorer";
+import Confessions from "~/components/Confessions";
 
 function ExampleCard() {
   return (
