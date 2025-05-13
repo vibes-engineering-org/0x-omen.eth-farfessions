@@ -15,6 +15,7 @@ import { useFrameSDK } from "~/hooks/useFrameSDK";
 import { baseUSDC } from "@daimo/contract";
 import { getAddress } from "viem";
 import BucketExplorer from "./BucketExplorer";
+import Confessions from "./Confessions";
 
 function ExampleCard() {
   return (
@@ -84,7 +85,7 @@ export default function MiniApp() {
 
   return (
     <div className="w-[400px] mx-auto py-2 px-2 space-y-4">
-      <ExampleCard />
+      <Confessions />
       <PaymentComponent />
       <FileUploadCard />
       <BucketExplorer />

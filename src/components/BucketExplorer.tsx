@@ -174,3 +174,8 @@ export default function BucketExplorer() {
     </Card>
   );
 }
+"use client";
+
+export default function BucketExplorer() {
+  return <div>BucketExplorer component placeholder</div>;
+}
