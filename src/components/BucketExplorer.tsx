@@ -176,12 +176,3 @@ export default function BucketExplorer() {
     </Card>
   );
 }
-"use client";
-
-export default function BucketExplorer() {
-  return (
-    <div className="text-gray-500 text-sm">
-      BucketExplorer component placeholder.
-    </div>
-  );
-}
