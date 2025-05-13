@@ -12,6 +12,7 @@ import {
 import { Label } from "~/components/ui/label";
 import BucketExplorer from "~/components/BucketExplorer";
 import Confessions from "~/components/Confessions";
+import Feed from "~/components/Feed";
 
 function ExampleCard() {
   return (
@@ -51,6 +52,12 @@ export default function MiniApp() {
         setStatus("error");
         return;
       }
+      // Save to localStorage
+      const newEntry = { text, timestamp: Date.now() };
+      const existing = JSON.parse(window.localStorage.getItem("farfessions") || "[]");
+      existing.unshift(newEntry);
+      if (existing.length > 25) existing.pop();
+      window.localStorage.setItem("farfessions", JSON.stringify(existing));
       setText("");
       setStatus("success");
     } catch (err) {
@@ -91,6 +98,7 @@ export default function MiniApp() {
         {status === "success" && (
           <p className="text-green-500 text-sm mt-1">Farfession submitted!</p>
         )}
+        <Feed />
       </div>
       <Confessions />
       <BucketExplorer />
