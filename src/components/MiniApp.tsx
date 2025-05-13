@@ -1,6 +1,7 @@
 "use client";
 
 import { useFrameSDK } from "~/hooks/useFrameSDK";
+import { useState } from "react";
 import {
   Card,
   CardHeader,
@@ -31,6 +32,32 @@ function ExampleCard() {
 
 export default function MiniApp() {
   const { isSDKLoaded } = useFrameSDK();
+  const [text, setText] = useState("");
+  const [status, setStatus] = useState<"idle" | "submitting" | "error" | "success">("idle");
+
+  const handleSubmit = async () => {
+    if (!text.trim()) {
+      setStatus("error");
+      return;
+    }
+    setStatus("submitting");
+    try {
+      const res = await fetch("/api/submit-farfession", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ farfession: text }),
+      });
+      if (!res.ok) {
+        setStatus("error");
+        return;
+      }
+      setText("");
+      setStatus("success");
+    } catch (err) {
+      console.error(err);
+      setStatus("error");
+    }
+  };
 
   if (!isSDKLoaded) {
     return <div>Loading...</div>;
@@ -41,15 +68,29 @@ export default function MiniApp() {
       <div>
         <h2 className="text-xl font-bold">Farfession</h2>
         <textarea
+          value={text}
+          onChange={(e) => setText(e.target.value)}
           maxLength={1000}
           className="w-full border border-gray-300 rounded px-2 py-1 mt-2"
           placeholder="Write your farfession..."
         />
         <button
-          className="mt-2 bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded"
+          onClick={handleSubmit}
+          disabled={!text.trim() || status === "submitting"}
+          className={`mt-2 font-medium py-2 px-4 rounded ${
+            !text.trim() || status === "submitting"
+              ? "bg-gray-400 cursor-not-allowed"
+              : "bg-blue-500 hover:bg-blue-600 text-white"
+          }`}
         >
-          Submit
+          {status === "submitting" ? "Submitting..." : "Submit"}
         </button>
+        {status === "error" && (
+          <p className="text-red-500 text-sm mt-1">Please enter a farfession.</p>
+        )}
+        {status === "success" && (
+          <p className="text-green-500 text-sm mt-1">Farfession submitted!</p>
+        )}
       </div>
       <Confessions />
       <BucketExplorer />
