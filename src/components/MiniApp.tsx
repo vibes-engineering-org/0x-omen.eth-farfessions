@@ -38,6 +38,19 @@ export default function MiniApp() {
 
   return (
     <div className="w-[400px] mx-auto py-2 px-2 space-y-4">
+      <div>
+        <h2 className="text-xl font-bold">Farfession</h2>
+        <textarea
+          maxLength={1000}
+          className="w-full border border-gray-300 rounded px-2 py-1 mt-2"
+          placeholder="Write your farfession..."
+        />
+        <button
+          className="mt-2 bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded"
+        >
+          Submit
+        </button>
+      </div>
       <Confessions />
       <BucketExplorer />
     </div>
