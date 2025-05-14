@@ -41,9 +41,15 @@ export default function MiniApp() {
       return;
     }
     setStatus("submitting");
+    // Save to localStorage immediately
+    const newEntry = { text, timestamp: Date.now() };
+    const existing = JSON.parse(window.localStorage.getItem("farfessions") || "[]");
+    existing.unshift(newEntry);
+    if (existing.length > 25) existing.pop();
+    window.localStorage.setItem("farfessions", JSON.stringify(existing));
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_URL || ""}/api/submit-farfession`,
+        "/api/submit-farfession",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
