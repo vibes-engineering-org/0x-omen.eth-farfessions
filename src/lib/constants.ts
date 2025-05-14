@@ -1,2 +1,2 @@
-export const PROJECT_TITLE = "Vibes Engineering App Template";
-export const PROJECT_DESCRIPTION = "a farcaster mini apps template by hellno";
+export const PROJECT_TITLE = "Farfessions";
+export const PROJECT_DESCRIPTION = "a mini app by 0x-omen.eth";
