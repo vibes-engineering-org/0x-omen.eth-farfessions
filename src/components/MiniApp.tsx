@@ -92,7 +92,11 @@ export default function MiniApp() {
           {status === "submitting" ? "Submitting..." : "Submit"}
         </button>
         {status === "error" && (
-          <p className="text-red-500 text-sm mt-1">Please enter a farfession.</p>
+          <p className="text-red-500 text-sm mt-1">
+            {!text.trim()
+              ? "Please enter a farfession."
+              : "Failed to submit farfession. Please try again."}
+          </p>
         )}
         {status === "success" && (
           <p className="text-green-500 text-sm mt-1">Farfession submitted!</p>
