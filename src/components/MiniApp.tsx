@@ -10,7 +10,6 @@ import {
   CardContent,
 } from "~/components/ui/card";
 import { Label } from "~/components/ui/label";
-import BucketExplorer from "~/components/BucketExplorer";
 import Confessions from "~/components/Confessions";
 import Feed from "~/components/Feed";
 
@@ -101,7 +100,6 @@ export default function MiniApp() {
         <Feed />
       </div>
       <Confessions />
-      <BucketExplorer />
     </div>
   );
 }
