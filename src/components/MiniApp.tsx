@@ -42,11 +42,14 @@ export default function MiniApp() {
     }
     setStatus("submitting");
     try {
-      const res = await fetch("/api/submit-farfession", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ farfession: text }),
-      });
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_URL || ""}/api/submit-farfession`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ farfession: text }),
+        }
+      );
       if (!res.ok) {
         setStatus("error");
         return;
